@@ -13,12 +13,17 @@ class DecathlonSportsTracking extends AbstractProvider
     /**
      * @var string
      */
-    const BASE_URL = 'https://account.geonaute.com/oauth/';
+    const BASE_URL = 'https://api-eu.decathlon.net/connect/oauth/';
 
     /**
      * @var string
      */
     const BASE_DATA_URL = 'https://api-eu.decathlon.net/sportstrackingdata/v2/';
+
+    /**
+     * @var string
+     */
+    protected $apiKey;
 
     /**
      * @inheritDoc
@@ -56,7 +61,17 @@ class DecathlonSportsTracking extends AbstractProvider
         return $this->getRequest($method, $url, $options);
     }
 
-
+    /**
+     *
+     * Get the default scopes used by this provider.
+     *
+     *
+     * @return array
+     */
+    protected function getDefaultScopes()
+    {
+        return ['sports_tracking_data:write email contacts sports_tracking_data profile'];
+    }
 
     /**
      * Builds request options used for requesting an access token.
@@ -74,7 +89,7 @@ class DecathlonSportsTracking extends AbstractProvider
             ]));
         return $options;
     }
-    
+
         /**
      * Returns a prepared request for requesting an access token.
      *
@@ -105,7 +120,7 @@ class DecathlonSportsTracking extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return self::BASE_URL.'accessToken';
+        return self::BASE_URL.'token';
     }
 
     /**
@@ -114,16 +129,6 @@ class DecathlonSportsTracking extends AbstractProvider
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
         return self::BASE_DATA_URL.'me';
-    }
-
-    /**
-     * Get the default scopes used by this provider.
-     *
-     * @return array
-     */
-    protected function getDefaultScopes()
-    {
-        return [];
     }
 
     /**
@@ -162,7 +167,8 @@ class DecathlonSportsTracking extends AbstractProvider
     protected function getDefaultHeaders()
     {
         return [
-            'Accept-Encoding' => 'gzip'
+            'Accept-Encoding' => 'gzip',
+            'api-key:' => $this->apiKey
         ];
     }
 }
