@@ -168,7 +168,7 @@ class DecathlonSportsTracking extends AbstractProvider
     {
         return [
             'Accept-Encoding' => 'gzip',
-            'api-key:' => $this->apiKey
+            'x-api-key' => $this->apiKey
         ];
     }
 }
