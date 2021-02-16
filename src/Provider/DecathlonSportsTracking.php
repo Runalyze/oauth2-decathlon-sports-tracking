@@ -13,12 +13,12 @@ class DecathlonSportsTracking extends AbstractProvider
     /**
      * @var string
      */
-    const BASE_URL = 'https://api-eu.decathlon.net/connect/oauth/';
+    const BASE_URL = 'https://api-global.decathlon.net/connect/oauth/';
 
     /**
      * @var string
      */
-    const BASE_DATA_URL = 'https://api-eu.decathlon.net/sportstrackingdata/v2/';
+    const BASE_DATA_URL = 'https://api-global.decathlon.net/sportstrackingdata/v2/';
 
     /**
      * @var string
