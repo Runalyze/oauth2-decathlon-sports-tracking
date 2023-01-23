@@ -1,4 +1,4 @@
-# [wip] Decathlno Sports Tracking for OAuth 2.0 Client
+# Decathlon Sports Tracking for OAuth 2.0 Client
 
 [![Latest Version](https://img.shields.io/github/release/runalyze/oauth2-decathlon-sports-tracking.svg?style=flat)](https://github.com/runalyze/oauth2-decathlon-sports-tracking/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -23,8 +23,8 @@ Usage is the same as The League's OAuth client, using `\League\OAuth2\Client\Pro
 
 ``` php
 $provider = new League\OAuth2\Client\Provider\DecathlonSportsTracking([
-    'clientId'     => '{polar-open-accesslink-id}',
-    'clientSecret' => '{polar-open-accesslink-secret}',
+    'clientId'     => '{decathlon-client-id}',
+    'clientSecret' => '{decathlon-client-secret}',
     'redirectUri'  => 'https://example.com/callback-url',
 ]);
 

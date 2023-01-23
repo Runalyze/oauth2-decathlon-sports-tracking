@@ -13,7 +13,7 @@ class DecathlonSportsTracking extends AbstractProvider
     /**
      * @var string
      */
-    const BASE_URL = 'https://api-global.decathlon.net/connect/oauth/';
+    const BASE_URL = 'https://api-eu.decathlon.net/connect/oauth/';
 
     /**
      * @var string
@@ -132,6 +132,22 @@ class DecathlonSportsTracking extends AbstractProvider
     }
 
     /**
+     * Returns an authenticated PSR-7 request instance.
+     *
+     * @param  string $method
+     * @param  string $url
+     * @param  AccessTokenInterface|string $token
+     * @param  array $options Any of "headers", "body", and "protocolVersion".
+     * @return RequestInterface
+     */
+    public function getAuthenticatedRequest($method, $url, $token, array $options = [])
+    {
+        $options = array_merge_recursive($options, ['headers' => ['x-api-key' => $this->apiKey]]);
+        return $this->createRequest($method, $url, $token, $options);
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function checkResponse(ResponseInterface $response, $data)
@@ -168,7 +184,6 @@ class DecathlonSportsTracking extends AbstractProvider
     {
         return [
             'Accept-Encoding' => 'gzip',
-            'x-api-key' => $this->apiKey
         ];
     }
 }
